@@ -5,15 +5,13 @@ import sys
 import pandas as pd #needs >0.16
 from Bio import SeqIO
 
-Info = """
-Finds orthologous sets of genes from website based OrthoMCL runs.
-
+Info = """Finds orthologous sets of genes from website based OrthoMCL runs.
 
 usage: ortho_select.py <control_file.txt> [-single]
 
-	-single flag will split output into single locus files for orthologous groups
+	-single flag will split output into single locus files for orthologous groups (this can create many files!)
 
-the controlfile should look like this:
+the control file should look like this:
 
 species1
 /path/to/species1_orthmcloutputfile
@@ -23,8 +21,6 @@ species2
 /path/to/species2_fasta_file
 
 ...and so on
-
-
 """
 
 if len(sys.argv) < 2:
@@ -34,8 +30,10 @@ else:
 	file_name = sys.argv[1]
 	args = sys.argv[2:len(sys.argv)]
 
+single = False
 if ("-single" in args):
 	print "Splitting sequences to single locus files"
+	single = True
 
 ## read and import control file
 print "Reading control file..."
@@ -73,20 +71,41 @@ for species in control_list:
 	ortho_file = pd.read_csv(species[1],sep="\t", header=None)
 	ids = ortho_file[ortho_file[1].isin(orthogroups)]
 	id_list.append(list(ids[0]))
-	orthos_list.append(list(ids[2]))
+	orthos_list.append(list(ids[1]))
 
 #extract sequences from fasta files and create new files
-print "\nWritting records to files:"
-i = 0
-for species in control_list:
-	print "Extracting sequences of shared Orthogroups for:", species[0]
-	seqfile = open(species[2], "r")
-	seqs_list = list(SeqIO.parse(seqfile, "fasta"))
-	outfile = open(species[0] + "_orthologous.fas", "w")
-	for sequence in seqs_list:
-		if sequence.id in id_list[i]:
-			index = id_list[i].index(sequence.id)
-			sequence.id = orthos_list[index]+"_"+species[0] + "_"+sequence.id
-			SeqIO.write(sequence, outfile, "fasta")
-	outfile.close()	
-	i += 1
+if single == True:
+	print "\nWriting records to single locus files:"
+	i=0
+	for orthogroup in orthogroups:
+		print orthogroup
+		outfile = open(orthogroup +" _"+ str(len(control_list)) + "_species.fasta","w")
+		for species in control_list:
+			seqfile = open(species[2], "r")
+			seqs_list = list(SeqIO.parse(seqfile, "fasta"))
+			for sequence in seqs_list:
+				index = orthos_list[i].index(orthogroup)
+				if sequence.id == id_list[i][index]:
+					sequence.id = orthos_list[i][index] + "_"+species[0] + "_"+sequence.id
+					SeqIO.write(sequence, outfile, "fasta")	
+			seqfile.close()
+			i += 1
+		i = 0
+		outfile.close()
+
+else:	
+	print "\nWriting records to species files:"
+	i = 0
+	for species in control_list:
+		print "Extracting sequences of shared Orthogroups for:", species[0]
+		seqfile = open(species[2], "r")
+		seqs_list = list(SeqIO.parse(seqfile, "fasta"))
+		outfile = open(species[0] + "_orthologous.fas", "w")
+		for sequence in seqs_list:
+			if sequence.id in id_list[i]:
+				index = id_list[i].index(sequence.id)
+				sequence.id = orthos_list[i][index] + "_"+species[0] + "_"+sequence.id
+				SeqIO.write(sequence, outfile, "fasta")
+		outfile.close()	
+		i += 1
+		seqfile.close()
