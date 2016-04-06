@@ -1,7 +1,7 @@
 genomics scripts
 =========
 
-This repository contains several small scripts that I use in various steps of my genomics analyses. Mostly they are highly personalized for my own needs and I do not provide warrenty for their functionality. In this README you will find a brief description of each script.
+This repository contains several small scripts I use in various steps of my genomics analyses. Mostly they are highly personalized for my own needs and I do not provide warranty for their functionality. In this README you will find a brief description of each script.
 
 
 #### assembly_filter.py
