@@ -7,7 +7,7 @@ This repository contains several small scripts I use in various steps of my geno
 #### assembly_filter.py
 
 Filters assemblies based on GC content, proportion of blast hit with particular taxonomic identity and mean read coverage.
-Helps to identfy contigs that are potential contaminants. This is somewhat similar to Bolobology approaches.
+Helps to identfy contigs that are potential contaminants. This is somewhat similar to Blobology approaches.
 
 Used non-standard Libraries:
 BioPython, scipy, numpy
