@@ -48,4 +48,11 @@ Reduces FASTA files to IDs from another FASTA file.
 Used non-standard Libraries:
 BioPython
 
+#### select_cazys.py
+
+Reduced a FASTA file to the IDS from dbCAN output according to a specific group of CAZymes
+
+Used non-standard Libraries:
+pandas, BioPython
+
 
