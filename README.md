@@ -55,4 +55,14 @@ Reduced a FASTA file to the IDS from dbCAN output according to a specific group 
 Used non-standard Libraries:
 pandas, BioPython
 
+#### parse_blastxml.py
+
+This script creates a valid xml blast file (-outfmt 5) from a piped concatenated xml file when blast ist used with parallel.
+
+#### parse_to_tabular.py
+
+This script converts a blast xml file (-outfmt 5) to tabular (-outfmt 6)
+
+Used non-standard Libraries:
+BioPython
 
