@@ -59,7 +59,7 @@ pandas, BioPython
 
 This script creates a valid xml blast file (-outfmt 5) from a piped concatenated xml file when blast ist used with parallel.
 
-#### parse_to_tabular.py
+#### parse_to_tab.py
 
 This script converts a blast xml file (-outfmt 5) to tabular (-outfmt 6)
 
