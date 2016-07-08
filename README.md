@@ -68,7 +68,7 @@ BioPython
 
 #### blast2go_to_tab.py
 
-Converts the output of a Blast2GO BLAST search (several zipped xml files) to a single blast tabular format (-outfmt 6).
+Converts the output of a Blast2GO BLAST search (several zipped xml files) to a single blast tabular format (-outfmt 6) file.
 
 
 
