@@ -66,3 +66,9 @@ This script converts a blast xml file (-outfmt 5) to tabular (-outfmt 6)
 Used non-standard Libraries:
 BioPython
 
+#### blast2go_to_tab.py
+
+Converts the output of a Blast2GO BLAST search (several zipped xml files) to a single blast tabular format (-outfmt 6).
+
+
+
