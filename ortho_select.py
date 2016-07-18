@@ -123,20 +123,25 @@ else:
 	i = 0
 	for species in control_list:
 		if invert == False:
-			print " Extracting sequences of shared Orthogroups for:", species[0]
+			print "Extracting sequences of shared Orthogroups for:", species[0]
 			seqfile = open(species[2], "r")
 			seqs_list = list(SeqIO.parse(seqfile, "fasta"))
 			outfile = open(species[0] + "_orthologous_protein.fas", "w")
+			for sequence in seqs_list:
+				if sequence.id in id_list[i]:
+					index = id_list[i].index(sequence.id)
+					sequence.id = orthos_list[i][index] + "_" +species[0] + "_" + sequence.id
+					SeqIO.write(sequence, outfile, "fasta")
 		else:
-			print " Extracting sequences of unique Orthogroups for:", species[0]
+			print "Extracting sequences of unique Orthogroups for:", species[0]
 			seqfile = open(species[2], "r")
 			seqs_list = list(SeqIO.parse(seqfile, "fasta"))
 			outfile = open(species[0] + "_unique_orthologous_protein.fas", "w")
-		for sequence in seqs_list:
-			if sequence.id in id_list[i]:
-				index = id_list[i].index(sequence.id)
-				sequence.id = orthos_list[i][index] + "_" +species[0] + "_" + sequence.id
-				SeqIO.write(sequence, outfile, "fasta")
-		outfile.close()	
+			for sequence in seqs_list:
+				if sequence.id in id_list[i]:
+					index = id_list[i].index(sequence.id)
+					#sequence.id = orthos_list[i][index] + "_" +species[0] + "_" + sequence.id
+					SeqIO.write(sequence, outfile, "fasta")
 		i += 1
-		seqfile.close()
+seqfile.close()
+outfile.close()	
