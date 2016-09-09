@@ -13,9 +13,9 @@ Used non-standard Libraries:
 BioPython, scipy, numpy
 
 
-#### calc_gc.py
+#### gc_plot.py
 
-Calculated GC content of DNA Sequences (e.g. Assemblies) using a sliding window approach. It creates output as PDF files with graphical representations of the GC content of the sequence.
+Calculated GC content of DNA Sequences (e.g. Assemblies) using a sliding window approach. It creates output as PDF files with graphical representations of the GC content of the sequence. Now also includes gene position information.
 
 Used non-standard Libraries:
 BioPython, matplotlib
@@ -36,7 +36,7 @@ pandas
 
 #### ortho_select.py
 
-Uses OrthoMCL output to select sequences belonging to orthologous groups from multiple species.
+Uses OrthoMCL or blast all vs. all output to select sequences belonging to orthologous groups from multiple species.
 
 Used non-standard Libraries:
 pandas, BioPython
