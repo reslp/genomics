@@ -20,6 +20,14 @@ Calculated GC content of DNA Sequences (e.g. Assemblies) using a sliding window 
 Used non-standard Libraries:
 BioPython, matplotlib
 
+#### get_longest_isoform.py
+
+Identifies longest splicing isoforms from Trinity asssemblies.
+
+Used non-standard Libraries:
+BioPython
+
+
 #### codon_alignment.py
 
 Uses Codon Alignments obtained from set of DNA and Protein Sequences to calculate dN/dS.
