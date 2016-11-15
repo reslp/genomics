@@ -42,6 +42,11 @@ Filters BLAST hits in tabular format.
 Used non-standard Libraries:
 pandas
 
+#### filter_codeml.py
+
+Filters output from codeml.py according to pvalue and number of sites under selection.
+
+
 #### ortho_select.py
 
 Uses OrthoMCL or blast all vs. all output to select sequences belonging to orthologous groups from multiple species.
