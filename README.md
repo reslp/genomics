@@ -27,6 +27,10 @@ Identifies longest splicing isoforms from Trinity asssemblies.
 Used non-standard Libraries:
 BioPython
 
+#### gff3_to_gtf.py
+
+Convert GFF3 (eg. from MAKER) files to GTF
+
 
 #### codon_alignment.py
 
