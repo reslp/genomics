@@ -89,3 +89,6 @@ Converts the output of a Blast2GO BLAST search (several zipped xml files) to a s
 
 
 
+#### scrape_cazy.py
+
+Downloads information of characterized CAZymes from cazy.org in tab delimited format for downstream analyses.
