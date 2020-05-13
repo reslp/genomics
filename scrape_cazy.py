@@ -30,7 +30,7 @@ def get_cazy_table(cazy):
 	if soup.find(id="line_actif").get_text().split("(")[-1].split(")"[0]) != empty:
 		number = int(soup.find(id="line_actif").get_text().split("(")[-1].split(")")[0])
 		print("Found a total number of", number, "cazymes in family", cazy, file=sys.stderr)
-	
+
 	#print(soup.find(id="line_actif").get_text())
 	#print(soup.prettify())
 
@@ -40,7 +40,7 @@ def get_cazy_table(cazy):
 			cazy_table = tables[1]
 			rows = cazy_table.findChildren("tr")
 			rows = rows[1:]
-			prefix = ""
+			prefix = cazy + "\t"
 			title = True
 			for row in rows:
 				#print(row)
@@ -52,7 +52,7 @@ def get_cazy_table(cazy):
 					if "Top" in row.find("td", {"class": "separateur1"}).get_text():
 						continue
 					else:
-						prefix = row.find("td", {"class": "separateur1"}).get_text()
+						prefix += row.find("td", {"class": "separateur1"}).get_text()
 						prefix += "\t"
 						continue
 					#print(row.find("td", {"class": "separateur1"}).get_text())
@@ -75,7 +75,7 @@ def get_cazy_table(cazy):
 			cazy_table = tables[1]
 			rows = cazy_table.findChildren("tr")
 			rows = rows[1:] # skip first two lines which contain the headers
-			prefix = ""
+			prefix = cazy + "\t"
 			for row in rows:
 				if "line_titre" in str(row):
 					continue
@@ -83,7 +83,7 @@ def get_cazy_table(cazy):
 					if "Top" in row.find("td", {"class": "separateur1"}).get_text():
 						continue
 					else:
-						prefix = row.find("td", {"class": "separateur1"}).get_text()
+						prefix += row.find("td", {"class": "separateur1"}).get_text()
 						prefix += "\t"
 						continue
 					#print(row.find("td", {"class": "separateur1"}).get_text())
