@@ -51,6 +51,9 @@ def get_cazy_table(cazy):
 				if row.find("td", {"class": "separateur1"}) != None:
 					if "Top" in row.find("td", {"class": "separateur1"}).get_text():
 						continue
+					if "tabulation" in str(row):
+						prefix = cazy + "\t" + row.find("td", {"class": "separateur1"}).get_text() + "\t"
+						continue
 					else:
 						prefix += row.find("td", {"class": "separateur1"}).get_text()
 						prefix += "\t"
@@ -81,6 +84,9 @@ def get_cazy_table(cazy):
 					continue
 				if row.find("td", {"class": "separateur1"}) != None:
 					if "Top" in row.find("td", {"class": "separateur1"}).get_text():
+						continue
+					if "tabulation" in str(row):
+						prefix = cazy + "\t" + row.find("td", {"class": "separateur1"}).get_text() + "\t"
 						continue
 					else:
 						prefix += row.find("td", {"class": "separateur1"}).get_text()
