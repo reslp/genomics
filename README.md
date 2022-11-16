@@ -96,3 +96,7 @@ Downloads information of characterized CAZymes from cazy.org in tab delimited fo
 ### get_lineage.py
 
 Downloads and parses lineage information from NCBI. This was used in early versions of phylociraptor.
+
+### excise-sequence.py
+
+Extracts smaller parts of a sequence from a longer one in FASTA format.
