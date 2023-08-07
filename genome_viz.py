@@ -29,7 +29,7 @@ for line in file:
 	if line.startswith(">")==False:
 		sequence += line.strip()
 
-print "Assembly length: %s" % str(len(sequence))
+print("Assembly length: %s" % str(len(sequence)))
 
 if len(sequence) > chunk_size:
 	print "The assembly is large (>100MB). Will create multiple files"
