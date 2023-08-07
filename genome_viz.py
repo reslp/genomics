@@ -32,7 +32,7 @@ for line in file:
 print("Assembly length: %s" % str(len(sequence)))
 
 if len(sequence) > chunk_size:
-	print "The assembly is large (>100MB). Will create multiple files"
+	print("The assembly is large (>100MB). Will create multiple files")
 
 # the size of the image
 x = 10000
