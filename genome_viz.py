@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # written by Philipp Resl
 
 import numpy as np
-from scipy import misc
+from PIL import Image
 import sys
 
 
@@ -10,7 +10,7 @@ Info = """
 Creates a visual image from a genome assembly in PNG format.
 Due to constraints in the image creating process assemblies >100MB will be split up in multiple files.
 
-usage: $ genome_vix.py assembly.fasta outfile.png
+usage: $ genome_vix.py assembly.fasta x y outfile.png
 """
 
 if len(sys.argv) < 2:
@@ -18,7 +18,9 @@ if len(sys.argv) < 2:
 	quit()
 else:
 	assembly_file_name = sys.argv[1]
-	out_file_name = sys.argv[2]
+	x = sys.argv[2]
+	y = sys.argv[3]
+	out_file_name = sys.argv[4]
 
 file = open(assembly_file_name, "r")
 
@@ -35,8 +37,11 @@ if len(sequence) > chunk_size:
 	print("The assembly is large (>100MB). Will create multiple files")
 
 # the size of the image
-x = 10000
-y = 10000
+x = int(x)
+y = int(y)
+
+if x*y <= len(sequence):
+	print("Dimensions of image are too small: Provided x*y needs to be larger than assembly length, will create multiple files!")
 
 data = np.zeros((y,x,3), dtype=np.uint8)
 
@@ -62,7 +67,7 @@ for letter in sequence:
 		xx = 0
 	if yy == y or i == len(sequence):
 		img_count += 1
-		img = misc.toimage(data[0:yy,0:x])
+		img = Image.fromarray(data[0:yy,0:x])
 		out_file = str(img_count) + "_" + out_file_name 
 		img.save(out_file)
 		xx = 0
